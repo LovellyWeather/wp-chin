@@ -7,6 +7,8 @@
  * @author OceanWP
  */
 
+use Leafo\ScssPhp\Compiler;
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -53,269 +55,279 @@ class Ocean_Extra_Scripts_Panel {
 		$scripts = array(
 			'oe_customSelect_script' => array(
 				'label' => esc_html__( 'Custom Select', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The customSelect.js script uses the native select box and add overlays a stylable <span> element in order to acheive the desired look.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script uses the native select box and add overlays a stylable <span> element in order to acheive the desired look.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 
 			'oe_dropDownSearch_script' => array(
 				'label' => esc_html__( 'Drop Down Search', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The dropDownSearch.js script is for the drop down search style in your navigation.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is for the drop down search style in your navigation.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_headerReplaceSearch_script' => array(
 				'label' => esc_html__( 'Header Replace Search', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The headerReplaceSearch.js script is for the header replace search style in your navigation.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is for the header replace search style in your navigation.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_overlaySearch_script' => array(
 				'label' => esc_html__( 'Overlay Search', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The overlaySearch.js script is for the overlay search style in your navigation.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is for the overlay search style in your navigation.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_fitVids_script' => array(
 				'label' => esc_html__( 'FitVids', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The fitVids.js script is to achieve fluid width videos in your responsive web design, your videos looks good on all devices.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is to achieve fluid width videos in your responsive web design, your videos looks good on all devices.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_fixedFooter_script' => array(
 				'label' => esc_html__( 'Fixed Footer', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The fixedFooter.js script adds a height to your content to keep your footer at the bottom of your page, the Fixed Footer option need to be activated in the customizer&rsquo;s Footer Widgets section.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script adds a height to your content to keep your footer at the bottom of your page, the Fixed Footer option need to be activated in the customizer&rsquo;s Footer Widgets section.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_fullScreenMenu_script' => array(
 				'label' => esc_html__( 'Full Screen Menu', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The fullScreenMenu.js script is to open your menu in overlay for the full screen header style, you can disable this function if you do not use this header style.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is to open your menu in overlay for the full screen header style, you can disable this function if you do not use this header style.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_headerSearchForm_script' => array(
 				'label' => esc_html__( 'Header Search Form', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The headerSearchForm.js script is to add a class to the search form to make the label disappear when text is inserted, used on some header style like medium or full screen.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is to add a class to the search form to make the label disappear when text is inserted, used on some header style like medium or full screen and the full screen mobile menu style.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_infiniteScroll_script' => array(
 				'label' => esc_html__( 'Infinite Scroll', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The infiniteScroll.js script create an infinite scrolling effect, used for the blog archives page if Infinite Scroll is selected as pagination style.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script create an infinite scrolling effect, used for the blog archives page if Infinite Scroll is selected as pagination style.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_isotope_script' => array(
 				'label' => esc_html__( 'Isotope', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The isotope.js script is to filter & sort layouts, used for the masonry grid style of your blog and will be used in some extensions.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is to filter & sort layouts, used for the masonry grid style of your blog and will be used in some extensions.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_lightbox_script' => array(
 				'label' => esc_html__( 'Lightbox', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The lightbox.js script enables you to overlay your images on the current page, used for the gallerie, single product and content images.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script enables you to overlay your images on the current page, used for the gallerie, single product and content images.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_matchHeight_script' => array(
 				'label' => esc_html__( 'Match Height', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The matchHeight.js is a responsive equal heights script makes the height of all selected elements exactly equal, used for the grid blog style.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is a responsive equal heights script makes the height of all selected elements exactly equal, used for the grid blog style.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_megaMenu_script' => array(
 				'label' => esc_html__( 'Mega Menu', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The megaMenu.js script is to create the mega menus, so if you don&rsquo;t use mega menus at all on your website, you can disable this script.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is to create the mega menus, so if you don&rsquo;t use mega menus at all on your website, you can disable this script.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_navNoClick_script' => array(
 				'label' => esc_html__( 'Nav No Click', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The navNoClick.js script is to prevent clicking on your links, used for the "Disable link" field of your menu items.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is to prevent clicking on your links, used for the "Disable link" field of your menu items.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_scrollEffect_script' => array(
 				'label' => esc_html__( 'Scroll Effect', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The scrollEffect.js script create an animation to your anchor links, mainly used for a one page site but also for some links like the comment link on your single posts.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script create an animation to your anchor links, mainly used for a one page site but also for some links like the comment link on your single posts.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_scrollTop_script' => array(
 				'label' => esc_html__( 'Scroll Top', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The scrollTop.js script is to displays the scroll up button and brings you back to the top of your page when you click on it.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is to displays the scroll up button and brings you back to the top of your page when you click on it.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_sidr_script' => array(
 				'label' => esc_html__( 'Sidr', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The sidr.js script is for easily creating responsive side menus, used for the mobile menu.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is for easily creating responsive side menus, used for the Sidebar mobile menu style.', 'ocean-extra' ),
+				'type' 	=> 'js',
+			),
+			'oe_dropdown_mobile_script' => array(
+				'label' => esc_html__( 'Drop Down Mobile', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is used for the Drop Down mobile menu style.', 'ocean-extra' ),
+				'type' 	=> 'js',
+			),
+			'oe_fullscreen_mobile_script' => array(
+				'label' => esc_html__( 'Full Screen Mobile', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is used for the Full Screen mobile menu style.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_slick_script' => array(
 				'label' => esc_html__( 'Slick', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The slick.js script is used for all the carousel of your site, gallerie images, WooCommerce single product images and thumbnails.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is used for all the carousel of your site, gallerie images, WooCommerce single product images and thumbnails.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_smoothScroll_script' => array(
 				'label' => esc_html__( 'SmoothScroll', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The smoothScroll.js script adds a smooth scrolling to the browser.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script adds a smooth scrolling to the browser.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_superfish_script' => array(
 				'label' => esc_html__( 'Superfish', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The superfish.js script adds usability enhancements to existing multi-level drop-down menus.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script adds usability enhancements to existing multi-level drop-down menus.', 'ocean-extra' ),
 				'type' 	=> 'js',
 			),
 			'oe_wooGridList_script' => array(
 				'label' => esc_html__( 'WooCommerce Grid/List Buttons', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The wooGridList.js script is to switch between grid and list view on your WooCommerce catalog products.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is to switch between grid and list view on your WooCommerce catalog products.', 'ocean-extra' ),
 				'type' 	=> 'js',
 				'condition' => OCEANWP_WOOCOMMERCE_ACTIVE,
 			),
 			'oe_wooMenuCart_script' => array(
 				'label' => esc_html__( 'WooCommerce Menu Cart', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The wooMenuCart.js script is to display and hide your WooCommerce cart drop down in the navigation.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is to display and hide your WooCommerce cart drop down in the navigation.', 'ocean-extra' ),
 				'type' 	=> 'js',
 				'condition' => OCEANWP_WOOCOMMERCE_ACTIVE,
 			),
 			'oe_wooCategoriesWidget_script' => array(
 				'label' => esc_html__( 'WooCommerce Categories Widget', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The wooCategoriesWidget.js script adds a button to show your sub products categories when you click on it for the WooCommerce categories widget.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script adds a button to show your sub products categories when you click on it for the WooCommerce categories widget.', 'ocean-extra' ),
 				'type' 	=> 'js',
 				'condition' => OCEANWP_WOOCOMMERCE_ACTIVE,
 			),
 			'oe_wooQuantityButtons_script' => array(
 				'label' => esc_html__( 'WooCommerce Quantity Buttons', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The wooQuantityButtons.js script is to add a up and down button for the quantity input number on your WooCommerce single products and cart pages.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is to add a up and down button for the quantity input number on your WooCommerce single products and cart pages.', 'ocean-extra' ),
 				'type' 	=> 'js',
 				'condition' => OCEANWP_WOOCOMMERCE_ACTIVE,
 			),
 			'oe_wooReviewsScroll_script' => array(
 				'label' => esc_html__( 'WooCommerce Reviews Scroll', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The wooReviewsScroll.js script is to show and scroll down to your review tab to your WooCommerce single products when you click on the review link.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This script is to show and scroll down to your review tab to your WooCommerce single products when you click on the review link.', 'ocean-extra' ),
 				'type' 	=> 'js',
 				'condition' => OCEANWP_WOOCOMMERCE_ACTIVE,
 			),
 
 			'oe_fontAwesome_style' => array(
 				'label' => esc_html__( 'Font Awesome Icons', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The fontAwesome.css style is all the css for the font awesome icons.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the font awesome icons.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_simpleLineIcons_style' => array(
 				'label' => esc_html__( 'Simple Line Icons', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The simpleLineIcons.css style is all the css for the simple line icons.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the simple line icons.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_topBar_style' => array(
 				'label' => esc_html__( 'Top Bar', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The topBar.css style is all the css for the top bar.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the top bar.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_header_style' => array(
 				'label' => esc_html__( 'Header', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The header.css style is all the css for the header.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the header.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_transparentHeader_style' => array(
 				'label' => esc_html__( 'Transparent Header', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The transparentHeader.css style is all the css for the transparent header style.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the transparent header style.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_topHeader_style' => array(
 				'label' => esc_html__( 'Top Header', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The topHeader.css style is all the css for the top header style.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the top header style.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_fullScreenHeader_style' => array(
 				'label' => esc_html__( 'Full Screen Header', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The fullScreenHeader.css style is all the css for the full screen header style.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the full screen header style.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_centerHeader_style' => array(
 				'label' => esc_html__( 'Center Header', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The centerHeader.css style is all the css for the center header style.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the center header style.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_mediumHeader_style' => array(
 				'label' => esc_html__( 'Medium Header', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The mediumHeader.css style is all the css for the medium header style.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the medium header style.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_customHeader_style' => array(
 				'label' => esc_html__( 'Custom Header', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The customHeader.css style is all the css for the custom header style.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the custom header style.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_navigation_style' => array(
 				'label' => esc_html__( 'Navigation', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The navigation.css style is all the css for the navigation of the principal menu.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the navigation of the principal menu.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_socialMenu_style' => array(
 				'label' => esc_html__( 'Social Icons Menu', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The socialMenu.css style is all the css for the social icons in the navigation of the header.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the social icons in the navigation of the header.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_pageHeader_style' => array(
 				'label' => esc_html__( 'Page Header', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The pageHeader.css style is all the css for the page header (title).', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the page header (title).', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_blog_style' => array(
 				'label' => esc_html__( 'Blog', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The blog.css style is all the css for the blog and post formats.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the blog and post formats.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_blogLarge_style' => array(
 				'label' => esc_html__( 'Blog Large Style', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The blogLarge.css style is all the css for the blog large style.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the blog large style.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_blogGrid_style' => array(
 				'label' => esc_html__( 'Blog Grid Style', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The blogGrid.css style is all the css for the blog grid style.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the blog grid style.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_singlePostPrevNext_style' => array(
 				'label' => esc_html__( 'Single Post Next/Prev Pagination', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The singlePostPrevNext.css style is all the css for the next/previous pagination on single post.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the next/previous pagination on single post.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_singlePostAuthorBio_style' => array(
 				'label' => esc_html__( 'Single Post Author Box', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The singlePostAuthorBio.css style is all the css for the author box on single post.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the author box on single post.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_singlePostRelatedPosts_style' => array(
 				'label' => esc_html__( 'Single Post Related Posts', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The singlePostRelatedPosts.css style is all the css for the related posts on single post.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the related posts on single post.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_sidebar_style' => array(
 				'label' => esc_html__( 'Sidebar', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The sidebar.css style is all the css for the sidebar.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the sidebar.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_comment_style' => array(
 				'label' => esc_html__( 'Comment', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The comment.css style is all the css for the comments.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the comments.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_pagination_style' => array(
 				'label' => esc_html__( 'Pagination', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The pagination.css style is all the css for the pagination.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the pagination.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_footerWidgets_style' => array(
 				'label' => esc_html__( 'Footer Widgets', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The footerWidgets.css style is all the css for the footer widgets area.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the footer widgets area.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_footerBottom_style' => array(
 				'label' => esc_html__( 'Footer Bottom', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The footerBottom.css style is all the css for the footer bottom area.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the footer bottom area.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_scrollTop_style' => array(
 				'label' => esc_html__( 'Scroll Top Button', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The scrollTop.css style is all the css for the scroll top button.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the scroll top button.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_errorPage_style' => array(
 				'label' => esc_html__( '404 Page', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The errorPage.css style is all the css for the 404 error page.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the 404 error page.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 			'oe_responsive_style' => array(
 				'label' => esc_html__( 'Responsive', 'ocean-extra' ),
-				'desc' 	=> esc_html__( 'The responsive.css style is all the css for the responsive view.', 'ocean-extra' ),
+				'desc' 	=> esc_html__( 'This style is all the css for the responsive view.', 'ocean-extra' ),
 				'type' 	=> 'css',
 			),
 		);
@@ -563,6 +575,8 @@ class Ocean_Extra_Scripts_Panel {
 		$scrollEffect 			= self::get_setting( 'oe_scrollEffect_script' );
 		$scrollTop 				= self::get_setting( 'oe_scrollTop_script' );
 		$sidr 					= self::get_setting( 'oe_sidr_script' );
+		$dropdown_mobile 		= self::get_setting( 'oe_dropdown_mobile_script' );
+		$fullscreen_mobile 		= self::get_setting( 'oe_fullscreen_mobile_script' );
 		$slick 					= self::get_setting( 'oe_slick_script' );
 		$smoothScroll 			= self::get_setting( 'oe_smoothScroll_script' );
 		$superfish 				= self::get_setting( 'oe_superfish_script' );
@@ -574,7 +588,6 @@ class Ocean_Extra_Scripts_Panel {
 
 		// Get js directory uri
 		$tDir 	= OCEANWP_JS_DIR_URI;
-		$pDir 	= OE_URL .'assets/js/';
 
 		// If a script is disabled
 		if ( ! $customSelect
@@ -594,6 +607,8 @@ class Ocean_Extra_Scripts_Panel {
 			|| ! $scrollEffect
 			|| ! $scrollTop
 			|| ! $sidr
+			|| ! $dropdown_mobile
+			|| ! $fullscreen_mobile
 			|| ! $slick
 			|| ! $smoothScroll
 			|| ! $superfish
@@ -609,100 +624,110 @@ class Ocean_Extra_Scripts_Panel {
 		    // Load customSelect js
 			if ( $customSelect ) {
 				$aFiles[] = $tDir .'devs/customselect.js';
-				$aFiles[] = $pDir .'customSelect.js';
+				$aFiles[] = $tDir .'core/customSelect.js';
 			}
 
 		    // Load dropDownSearch js
 			if ( $dropDownSearch ) {
-				$aFiles[] = $pDir .'dropDownSearch.js';
+				$aFiles[] = $tDir .'core/dropDownSearch.js';
 			}
 
 		    // Load headerReplaceSearch js
 			if ( $headerReplaceSearch ) {
-				$aFiles[] = $pDir .'headerReplaceSearch.js';
+				$aFiles[] = $tDir .'core/headerReplaceSearch.js';
 			}
 
 		    // Load overlaySearch js
 			if ( $overlaySearch ) {
-				$aFiles[] = $pDir .'overlaySearch.js';
+				$aFiles[] = $tDir .'core/overlaySearch.js';
 			}
 
 			// Load fitVids js
 			if ( $fitVids ) {
 				$aFiles[] = $tDir .'devs/fitvids.js';
-				$aFiles[] = $pDir .'fitVids.js';
+				$aFiles[] = $tDir .'core/fitVids.js';
 			}
 
 			// Load fixedFooter js
 			if ( $fixedFooter ) {
-				$aFiles[] = $pDir .'fixedFooter.js';
+				$aFiles[] = $tDir .'core/fixedFooter.js';
 			}
 
 			// Load fullScreenMenu js
 			if ( $fullScreenMenu ) {
-				$aFiles[] = $pDir .'fullScreenMenu.js';
+				$aFiles[] = $tDir .'core/fullScreenMenu.js';
 			}
 
 			// Load headerSearchForm js
 			if ( $headerSearchForm ) {
-				$aFiles[] = $pDir .'headerSearchForm.js';
+				$aFiles[] = $tDir .'core/headerSearchForm.js';
 			}
 
 			// Load infiniteScroll js
 			if ( $infiniteScroll
 				&& 'infinite_scroll' == get_theme_mod( 'ocean_blog_pagination_style', 'standard' ) ) {
 				$aFiles[] = $tDir .'dynamic/infinitescroll.js';
-				$aFiles[] = $pDir .'infiniteScroll.js';
+				$aFiles[] = $tDir .'core/infiniteScroll.js';
 			}
 
 			// Load isotope js
 			if ( $isotope ) {
 				$aFiles[] = $tDir .'devs/isotope.js';
-				$aFiles[] = $pDir .'isotope.js';
+				$aFiles[] = $tDir .'core/isotope.js';
 			}
 
 			// Load lightbox js
 			if ( $lightbox ) {
 				$aFiles[] = $tDir .'devs/chocolat.js';
-				$aFiles[] = $pDir .'lightbox.js';
+				$aFiles[] = $tDir .'core/lightbox.js';
 			}
 
 			// Load matchHeight js
 			if ( $matchHeight ) {
 				$aFiles[] = $tDir .'devs/matchHeight.js';
-				$aFiles[] = $pDir .'matchHeight.js';
+				$aFiles[] = $tDir .'core/matchHeight.js';
 			}
 
 			// Load megaMenu js
 			if ( $megaMenu ) {
-				$aFiles[] = $pDir .'megaMenu.js';
+				$aFiles[] = $tDir .'core/megaMenu.js';
 			}
 
 			// Load navnoclick js
 			if ( $navNoClick ) {
-				$aFiles[] = $pDir .'navNoClick.js';
+				$aFiles[] = $tDir .'core/navNoClick.js';
 			}
 
 			// Load scrollEffect js
 			if ( $scrollEffect ) {
-				$aFiles[] = $pDir .'scrollEffect.js';
+				$aFiles[] = $tDir .'core/scrollEffect.js';
 			}
 
 			// Load scrollTop js
 			if ( $scrollTop ) {
-				$aFiles[] = $pDir .'scrollTop.js';
+				$aFiles[] = $tDir .'core/scrollTop.js';
 			}
 
 			// Load sidr js
 			if ( $sidr ) {
 				$aFiles[] = $tDir .'devs/sidr.js';
-				$aFiles[] = $pDir .'sidr.js';
+				$aFiles[] = $tDir .'core/sidr.js';
+			}
+
+			// Load dropdown_mobile js
+			if ( $dropdown_mobile ) {
+				$aFiles[] = $tDir .'core/dropdownMobile.js';
+			}
+
+			// Load fullscreen_mobile js
+			if ( $fullscreen_mobile ) {
+				$aFiles[] = $tDir .'core/fullScreenMobile.js';
 			}
 
 			// Load slick js
 			if ( $slick ) {
 				$aFiles[] = $tDir .'devs/slick.js';
-				$aFiles[] = $pDir .'slick.js';
+				$aFiles[] = $tDir .'core/slick.js';
 			}
 
 			// Load smoothScroll js
@@ -713,7 +738,7 @@ class Ocean_Extra_Scripts_Panel {
 			// Load superfish js
 			if ( $superfish ) {
 				$aFiles[] = $tDir .'devs/superfish.js';
-				$aFiles[] = $pDir .'superfish.js';
+				$aFiles[] = $tDir .'core/superfish.js';
 			}
 
 			// If WooCommerce exist
@@ -722,27 +747,27 @@ class Ocean_Extra_Scripts_Panel {
 		    	// Load wooGridList js
 		    	if ( $wooGridList ) {
 					$aFiles[] = $tDir .'devs/cookie.js';
-					$aFiles[] = $pDir .'woo/wooGridList.js';
+					$aFiles[] = $tDir .'dynamic/woo/devs/wooGridList.js';
 				}
 
 		    	// Load wooMenuCart js
 		    	if ( $wooMenuCart ) {
-					$aFiles[] = $pDir .'woo/wooMenuCart.js';
+					$aFiles[] = $tDir .'dynamic/woo/devs/wooMenuCart.js';
 				}
 
 		    	// Load wooCategoriesWidget js
 		    	if ( $wooCategoriesWidget ) {
-					$aFiles[] = $pDir .'woo/wooCategoriesWidget.js';
+					$aFiles[] = $tDir .'dynamic/woo/devs/wooCategoriesWidget.js';
 				}
 
 		    	// Load wooQuantityButtons js
 		    	if ( $wooQuantityButtons ) {
-					$aFiles[] = $pDir .'woo/wooQuantityButtons.js';
+					$aFiles[] = $tDir .'dynamic/woo/devs/wooQuantityButtons.js';
 				}
 
 		    	// Load wooReviewsScroll js
 		    	if ( $wooReviewsScroll ) {
-					$aFiles[] = $pDir .'woo/wooReviewsScroll.js';
+					$aFiles[] = $tDir .'dynamic/woo/devs/wooReviewsScroll.js';
 				}
 
 			}
@@ -780,6 +805,9 @@ class Ocean_Extra_Scripts_Panel {
 	 */
 	public static function generate_css() {
 
+		// Sass Compiler (vendor)
+		require_once( OE_PATH .'/includes/panel/scssphp/scss.inc.php' );
+
 		// Return if is not OceanWP or not writable
 		if ( ! class_exists( 'OCEANWP_Theme_Class' )
 			|| ! self::is_writable( 'css' ) ) {
@@ -794,11 +822,11 @@ class Ocean_Extra_Scripts_Panel {
 		$lightbox 				= self::get_setting( 'oe_lightbox_script' );
 		$megaMenu 				= self::get_setting( 'oe_megaMenu_script' );
 		$sidr 					= self::get_setting( 'oe_sidr_script' );
+		$dropdown_mobile 		= self::get_setting( 'oe_dropdown_mobile_script' );
+		$fullscreen_mobile 		= self::get_setting( 'oe_fullscreen_mobile_script' );
 		$wooMenuCart 			= self::get_setting( 'oe_wooMenuCart_script' );
 		$wooCategoriesWidget 	= self::get_setting( 'oe_wooCategoriesWidget_script' );
 		$wooQuantityButtons 	= self::get_setting( 'oe_wooQuantityButtons_script' );
-		$fontAwesome 			= self::get_setting( 'oe_fontAwesome_style' );
-		$simpleLineIcons 		= self::get_setting( 'oe_simpleLineIcons_style' );
 		$topBar 				= self::get_setting( 'oe_topBar_style' );
 		$header 				= self::get_setting( 'oe_header_style' );
 		$transparentHeader 		= self::get_setting( 'oe_transparentHeader_style' );
@@ -827,7 +855,9 @@ class Ocean_Extra_Scripts_Panel {
 		$slick 					= self::get_setting( 'oe_slick_script' );
 
 		// Get css directory uri
-		$pDir 	= OE_URL .'assets/css/';
+		$tSass 	= OCEANWP_THEME_URI .'/sass/';
+		$tDir 	= $tSass .'components/';
+		$cssDir = OCEANWP_CSS_DIR_URI;
 
 		// If a style is disabled
 		if ( ! $customSelect
@@ -837,11 +867,11 @@ class Ocean_Extra_Scripts_Panel {
 			|| ! $lightbox
 			|| ! $megaMenu
 			|| ! $sidr
+			|| ! $dropdown_mobile
+			|| ! $fullscreen_mobile
 			|| ! $wooMenuCart
 			|| ! $wooCategoriesWidget
 			|| ! $wooQuantityButtons
-			|| ! $fontAwesome
-			|| ! $simpleLineIcons
 			|| ! $topBar
 			|| ! $header
 			|| ! $transparentHeader
@@ -872,223 +902,244 @@ class Ocean_Extra_Scripts_Panel {
 		    // Array
 		    $aFiles = array();
 
-		    // Main CSS
-		    $aFiles[] = $pDir .'main.css';
+			$aFiles[] = $tSass .'_config.scss';
+			$aFiles[] = $tSass .'_mixins.scss';
+			$aFiles[] = $tSass .'base/_main.scss';
+			$aFiles[] = $tSass .'base/_normalize.scss';
+			$aFiles[] = $tSass .'_layout.scss';
+			$aFiles[] = $tSass .'base/_shared.scss';
+			$aFiles[] = $tSass .'base/_typography.scss';
+			$aFiles[] = $tSass .'base/_form.scss';
 
-		    // Load customSelect css
+			// Load customSelect
 			if ( $customSelect ) {
-				$aFiles[] = $pDir .'customSelect.css';
+				$aFiles[] = $tDir .'_custom-selects.scss';
 			}
 
-			// Load dropDownSearch css
+			// Load dropDownSearch
 			if ( $dropDownSearch ) {
-				$aFiles[] = $pDir .'dropDownSearch.css';
+				$aFiles[] = $tDir .'header/_search-dropdown.scss';
 			}
 
-		    // Load headerReplaceSearch css
+		    // Load headerReplaceSearch
 			if ( $headerReplaceSearch ) {
-				$aFiles[] = $pDir .'headerReplaceSearch.css';
+				$aFiles[] = $tDir .'header/_search-replace.scss';
 			}
 
-		    // Load overlaySearch css
+		    // Load overlaySearch
 			if ( $overlaySearch ) {
-				$aFiles[] = $pDir .'overlaySearch.css';
+				$aFiles[] = $tDir .'header/_search-overlay.scss';
 			}
 
-			// Load lightbox css
+			// Load lightbox
 			if ( $lightbox ) {
-				$aFiles[] = $pDir .'lightbox.css';
+				$aFiles[] = $tDir .'plugins/_chocolat.scss';
 			}
 
-		    // Load megaMenu css
+		    // Load megaMenu
 			if ( $megaMenu ) {
-				$aFiles[] = $pDir .'megaMenu.css';
+				$aFiles[] = $tDir .'header/_megamenu.scss';
 			}
 
-		    // Load sidr css
+		    // Load sidr
 			if ( $sidr ) {
-				$aFiles[] = $pDir .'sidr.css';
+				$aFiles[] = $tDir .'plugins/_sidr.scss';
 			}
 
-			// Load fontAwesome css
-			if ( $fontAwesome ) {
-				$aFiles[] = $pDir .'fontAwesome.css';
+		    // Load dropdown_mobile
+			if ( $dropdown_mobile ) {
+				$aFiles[] = $tDir .'mobile/_dropdown-mobile.scss';
 			}
 
-			// Load simpleLineIcons css
-			if ( $simpleLineIcons ) {
-				$aFiles[] = $pDir .'simpleLineIcons.css';
+		    // Load fullscreen_mobile
+			if ( $fullscreen_mobile ) {
+				$aFiles[] = $tDir .'mobile/_fullscreen-mobile.scss';
 			}
 
-			// Load topBar css
+			// Load topBar
 			if ( $topBar ) {
-				$aFiles[] = $pDir .'topBar.css';
+				$aFiles[] = $tDir .'topbar/_topbar.scss';
+				$aFiles[] = $tDir .'topbar/_topbar-content.scss';
+				$aFiles[] = $tDir .'topbar/_topbar-menu.scss';
+				$aFiles[] = $tDir .'topbar/_topbar-social.scss';
 			}
 
-			// Load header css
+			// Load header
 			if ( $header ) {
-				$aFiles[] = $pDir .'header.css';
+				$aFiles[] = $tDir .'header/_header.scss';
 			}
 
-			// Load transparentHeader css
+			// Load transparentHeader
 			if ( $transparentHeader ) {
-				$aFiles[] = $pDir .'transparentHeader.css';
+				$aFiles[] = $tDir .'header/_header-transparent.scss';
 			}
 
-			// Load topHeader css
+			// Load topHeader
 			if ( $topHeader ) {
-				$aFiles[] = $pDir .'topHeader.css';
+				$aFiles[] = $tDir .'header/_header-top.scss';
 			}
 
-			// Load fullScreenHeader css
+			// Load fullScreenHeader
 			if ( $fullScreenHeader ) {
-				$aFiles[] = $pDir .'fullScreenHeader.css';
+				$aFiles[] = $tDir .'header/_header-fullscreen.scss';
 			}
 
-			// Load centerHeader css
+			// Load centerHeader
 			if ( $centerHeader ) {
-				$aFiles[] = $pDir .'centerHeader.css';
+				$aFiles[] = $tDir .'header/_header-center.scss';
 			}
 
-			// Load mediumHeader css
+			// Load mediumHeader
 			if ( $mediumHeader ) {
-				$aFiles[] = $pDir .'mediumHeader.css';
+				$aFiles[] = $tDir .'header/_header-medium.scss';
 			}
 
-			// Load customHeader css
+			// Load customHeader
 			if ( $customHeader ) {
-				$aFiles[] = $pDir .'customHeader.css';
+				$aFiles[] = $tDir .'header/_header-custom.scss';
 			}
 
-			// Load navigation css
+			// Load navigation
 			if ( $navigation ) {
-				$aFiles[] = $pDir .'navigation.css';
+				$aFiles[] = $tDir .'header/_navigation.scss';
 			}
 
-			// Load socialMenu css
+			// Load socialMenu
 			if ( $socialMenu ) {
-				$aFiles[] = $pDir .'socialMenu.css';
+				$aFiles[] = $tDir .'header/_socialmenu.scss';
 			}
 
-			// Load pageHeader css
+			// Load pageHeader
 			if ( $pageHeader ) {
-				$aFiles[] = $pDir .'pageHeader.css';
+				$aFiles[] = $tDir .'_page-header.scss';
 			}
 
-			// Load blog css
+			// Load blog
 			if ( $blog ) {
-				$aFiles[] = $pDir .'blog.css';
+				$aFiles[] = $tDir .'blog/_blog.scss';
+				$aFiles[] = $tDir .'blog/_blog-meta.scss';
+				$aFiles[] = $tDir .'blog/_gallery-format.scss';
+				$aFiles[] = $tDir .'blog/_link-format.scss';
+				$aFiles[] = $tDir .'blog/_quote-format.scss';
+				$aFiles[] = $tDir .'blog/_video-audio-format.scss';
+				$aFiles[] = $tDir .'blog/_single-content.scss';
+				$aFiles[] = $tDir .'blog/_single-post.scss';
+				$aFiles[] = $tDir .'blog/_single-tags.scss';
 			}
 
-			// Load blogLarge css
+			// Load blogLarge
 			if ( $blogLarge ) {
-				$aFiles[] = $pDir .'blogLarge.css';
+				$aFiles[] = $tDir .'blog/_blog-large.scss';
 			}
 
-			// Load blogGrid css
+			// Load blogGrid
 			if ( $blogGrid ) {
-				$aFiles[] = $pDir .'blogGrid.css';
+				$aFiles[] = $tDir .'blog/_blog-grid.scss';
 			}
 
-			// Load singlePostPrevNext css
+			// Load singlePostPrevNext
 			if ( $singlePostPrevNext ) {
-				$aFiles[] = $pDir .'singlePostPrevNext.css';
+				$aFiles[] = $tDir .'blog/_single-next-prev.scss';
 			}
 
-			// Load singlePostAuthorBio css
+			// Load singlePostAuthorBio
 			if ( $singlePostAuthorBio ) {
-				$aFiles[] = $pDir .'singlePostAuthorBio.css';
+				$aFiles[] = $tDir .'blog/_single-author-bio.scss';
 			}
 
-			// Load singlePostRelatedPosts css
+			// Load singlePostRelatedPosts
 			if ( $singlePostRelatedPosts ) {
-				$aFiles[] = $pDir .'singlePostRelatedPosts.css';
+				$aFiles[] = $tDir .'blog/_single-related-posts.scss';
 			}
 
-			// Load sidebar css
+			// Load sidebar
 			if ( $sidebar ) {
-				$aFiles[] = $pDir .'sidebar.css';
+				$aFiles[] = $tDir .'sidebar/_sidebar.scss';
 			}
 
-			// Load comment css
+			// Load comment
 			if ( $comment ) {
-				$aFiles[] = $pDir .'comment.css';
+				$aFiles[] = $tDir .'_comments.scss';
 			}
 
-			// Load pagination css
+			// Load pagination
 			if ( $pagination ) {
-				$aFiles[] = $pDir .'pagination.css';
+				$aFiles[] = $tDir .'_pagination.scss';
 			}
 
-			// Load footerWidgets css
+			// Load footerWidgets
 			if ( $footerWidgets ) {
-				$aFiles[] = $pDir .'footerWidgets.css';
+				$aFiles[] = $tDir .'footer/_footer-widgets.scss';
 			}
 
-			// Load footerBottom css
+			// Load footerBottom
 			if ( $footerBottom ) {
-				$aFiles[] = $pDir .'footerBottom.css';
+				$aFiles[] = $tDir .'footer/_footer-bottom.scss';
 			}
 
-			// Load scrollTop css
+			// Load scrollTop
 			if ( $scrollTop ) {
-				$aFiles[] = $pDir .'scrollTop.css';
+				$aFiles[] = $tDir .'footer/_scroll-top.scss';
 			}
 
-			// Load errorPage css
+			// Load errorPage
 			if ( $errorPage ) {
-				$aFiles[] = $pDir .'errorPage.css';
+				$aFiles[] = $tDir .'_404.scss';
 			}
 
-			// Load responsive css
+			// Load responsive
 			if ( $responsive ) {
-				$aFiles[] = $pDir .'responsive.css';
+				$aFiles[] = $tDir .'_responsive.scss';
 			}
 
 			// If WooCommerce exist
 			if ( OCEANWP_WOOCOMMERCE_ACTIVE ) {
 
-		    	// Load wooCommerce css
-				$aFiles[] = $pDir .'woo/wooCommerce.css';
+		    	// Load wooCommerce
+				$aFiles[] = $tSass .'woo/_woocommerce.scss';
+				$aFiles[] = $tSass .'woo/_woo-responsive.scss';
 
-		    	// Load wooMenuCart css
+		    	// Load wooMenuCart
 				if ( $wooMenuCart ) {
-					$aFiles[] = $pDir .'woo/wooMenuCart.css';
+					$aFiles[] = $tSass .'woo/_woo-cart.scss';
 				}
 
-			    // Load wooCategoriesWidget css
+			    // Load wooCategoriesWidget
 				if ( $wooCategoriesWidget ) {
-					$aFiles[] = $pDir .'woo/wooCategoriesWidget.css';
+					$aFiles[] = $tSass .'woo/_woo-cat-widget.scss';
 				}
 
-			    // Load wooQuantityButtons css
+			    // Load wooQuantityButtons
 				if ( $wooQuantityButtons ) {
-					$aFiles[] = $pDir .'woo/wooQuantityButtons.css';
+					$aFiles[] = $tSass .'woo/_woo-quantity.scss';
 				}
 
 			}
 
-		    // Load slick css to the end to prevent conflict
+		    // Load slick to the end to prevent conflict
 			if ( $slick ) {
-				$aFiles[] = $pDir .'slick.css';
+				$aFiles[] = $tDir .'plugins/_slick.scss';
+				$aFiles[] = $tDir .'plugins/_slick-theme.scss';
 			}
-				
+
 			// Check WP_Filesystem
 			global $wp_filesystem;
 			self::init_filesystem();
 
-			// Get CSS files content
+			$scss = new Compiler();
+			$scss->setFormatter( 'Leafo\ScssPhp\Formatter\Compressed' );
+
+	      	// Get files content
 			$strCSS = '';
 			foreach( $aFiles as $file ) :
-				$contents 	= $wp_filesystem->get_contents( $file );
-				$strCSS 	.= str_replace( "\xEF\xBB\xBF", '', $contents );
+				$strCSS .= $wp_filesystem->get_contents( $file );
 			endforeach;
 
-			// Minifying CSS files
-			$cssMignifier = wp_strip_all_tags( oceanwp_minify_css( $strCSS ) );
+			// Compile the SCSS code
+			$strCSS = $scss->compile( $strCSS );
 
-			// Putting all the scripts into one CSS file
-			$wp_filesystem->put_contents( self::get_file( 'css', 'path' ), $cssMignifier );
+			// Putting all the styles into one CSS file
+			$wp_filesystem->put_contents( self::get_file( 'css', 'path' ), $strCSS );
 		    
 		} else {
 
@@ -1141,10 +1192,14 @@ class Ocean_Extra_Scripts_Panel {
 		// If style exist
 		if ( file_exists( self::get_file( 'css', 'path' ) ) ) {
 
-			// Unregister default style
+			// Unregister default styles
 			wp_deregister_style( 'oceanwp-style' );
-			wp_deregister_style( 'font-awesome' );
-			wp_deregister_style( 'simple-line-icons' );
+			if ( ! self::get_setting( 'oe_fontAwesome_style' ) ) {
+				wp_deregister_style( 'font-awesome' );
+			}
+			if ( ! self::get_setting( 'oe_simpleLineIcons_style' ) ) {
+				wp_deregister_style( 'simple-line-icons' );
+			}
 			if ( OCEANWP_WOOCOMMERCE_ACTIVE ) {
 				wp_deregister_style( 'oceanwp-woocommerce' );
 			}

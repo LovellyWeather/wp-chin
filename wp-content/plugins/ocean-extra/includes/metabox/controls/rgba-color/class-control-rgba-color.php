@@ -44,17 +44,6 @@ class OceanWP_ButterBean_Control_RGBA_Color extends ButterBean_Control {
 	public $options = array();
 
 	/**
-	 * Enqueue scripts/styles for the control.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @return void
-	 */
-	public function enqueue() {
-		wp_enqueue_script( 'wp-color-picker-alpha' );
-	}
-
-	/**
 	 * Gets the attributes for the control.
 	 *
 	 * @since  1.0.0

@@ -59,7 +59,10 @@ if ( ! class_exists( 'Ocean_Extra_Custom_Header_Nav_Widget' ) ) {
 					get_template_part( 'partials/header/nav' );
 
 					// Mobile menu
-					get_template_part( 'partials/mobile/mobile-icon' ); ?>
+					get_template_part( 'partials/mobile/mobile-icon' );
+
+					// Drop down mobile menu style
+					get_template_part( 'partials/mobile/mobile-dropdown' ); ?>
 
 				</div>
 				

@@ -7,7 +7,7 @@
 
         ready : function() {
 
-            jQuery( this.$el ).find( '.butterbean-select' ).select2( {
+            jQuery( this.$el ).find( '.butterbean-select' ).owpSelect2( {
                 minimumResultsForSearch: 10,
                 dropdownCssClass: 'oceanwp-select2',
                 width: '100%'
@@ -23,7 +23,7 @@
 
 		ready : function() {
 
-			jQuery( this.$el ).find( '.butterbean-multiple-select' ).select2( {
+			jQuery( this.$el ).find( '.butterbean-multiple-select' ).owpSelect2( {
 				dropdownCssClass: 'oceanwp-select2',
 				width: '100%'
 			} );
@@ -37,7 +37,7 @@
 
         ready : function() {
 
-            jQuery( this.$el ).find( '.butterbean-select' ).select2( {
+            jQuery( this.$el ).find( '.butterbean-select' ).owpSelect2( {
                 minimumResultsForSearch: 10,
                 dropdownCssClass: 'oceanwp-select2',
                 width: '100%'

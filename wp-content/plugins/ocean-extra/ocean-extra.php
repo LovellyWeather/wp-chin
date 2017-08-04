@@ -3,7 +3,7 @@
  * Plugin Name:			Ocean Extra
  * Plugin URI:			https://oceanwp.org/extension/ocean-extra/
  * Description:			Add extra features like widgets, metaboxes, import/export and a panel to activate the premium extensions.
- * Version:				1.2.9
+ * Version:				1.2.10
  * Author:				OceanWP
  * Author URI:			https://oceanwp.org/
  * Requires at least:	4.5.0
@@ -86,7 +86,7 @@ final class Ocean_Extra {
 		$this->token 			= 'ocean-extra';
 		$this->plugin_url 		= plugin_dir_url( __FILE__ );
 		$this->plugin_path 		= plugin_dir_path( __FILE__ );
-		$this->version 			= '1.2.9';
+		$this->version 			= '1.2.10';
 
 		define( 'OE_URL', $this->plugin_url );
 		define( 'OE_PATH', $this->plugin_path );
@@ -95,15 +95,16 @@ final class Ocean_Extra {
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
-		add_action( 'init', array( $this, 'oe_load_plugin_textdomain' ) );
+		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
 		// Setup all the things
-		add_action( 'init', array( $this, 'oe_setup' ) );
+		add_action( 'init', array( $this, 'setup' ) );
 
 		// Menu icons
 		$theme = wp_get_theme();
 		if ( 'OceanWP' == $theme->name || 'oceanwp' == $theme->template ) {
 			require_once( OE_PATH .'/includes/panel/theme-panel.php' );
+			require_once( OE_PATH .'/includes/panel/library.php' );
 			require_once( OE_PATH .'/includes/panel/updater.php' );
 			require_once( OE_PATH .'/includes/menu-icons/menu-icons.php' );
 		}
@@ -144,7 +145,7 @@ final class Ocean_Extra {
 	 * @since   1.0.0
 	 * @return  void
 	 */
-	public function oe_load_plugin_textdomain() {
+	public function load_plugin_textdomain() {
 		load_plugin_textdomain( 'ocean-extra', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 
@@ -204,6 +205,7 @@ final class Ocean_Extra {
 		$wp_customize->remove_control( 'header_textcolor' );
 		$wp_customize->remove_control( 'background_color' );
 		$wp_customize->remove_control( 'background_image' );
+		$wp_customize->remove_control( 'display_header_text' );
 
 		// Remove default settings
 		$wp_customize->remove_setting( 'background_color' );
@@ -216,7 +218,7 @@ final class Ocean_Extra {
 	 * Only executes if OceanWP or a child theme using OceanWP as a parent is active and the extension specific filter returns true.
 	 * @return void
 	 */
-	public function oe_setup() {
+	public function setup() {
 		$theme = wp_get_theme();
 
 		if ( 'OceanWP' == $theme->name || 'oceanwp' == $theme->template ) {
@@ -229,9 +231,9 @@ final class Ocean_Extra {
 			require_once( OE_PATH .'/includes/jsmin.php' );
 			require_once( OE_PATH .'/includes/panel/notice.php' );
 			require_once( OE_PATH .'/includes/walker.php' );
-			add_action( 'wp_enqueue_scripts', array( $this, 'oe_scripts' ), 999 );
+			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ), 999 );
 		} else {
-			add_action( 'admin_notices', array( $this, 'oe_install_oceanwp_notice' ) );
+			add_action( 'admin_notices', array( $this, 'install_oceanwp_notice' ) );
 		}
 	}
 
@@ -241,7 +243,7 @@ final class Ocean_Extra {
 	 * @since   1.0.0
 	 * @return  void
 	 */
-	public function oe_install_oceanwp_notice() {
+	public function install_oceanwp_notice() {
 		echo '<div class="notice is-dismissible updated">
 				<p>' . esc_html__( 'Ocean Extra requires that you use OceanWP as your parent theme.', 'ocean-extra' ) . ' <a href="https://oceanwp.org/">' . esc_html__( 'Install OceanWP Now', 'ocean-extra' ) . '</a></p>
 			</div>';
@@ -293,14 +295,14 @@ final class Ocean_Extra {
 	 *
 	 * @since   1.0.0
 	 */
-	public function oe_scripts() {
+	public function scripts() {
 
 		// Load main stylesheet
-		wp_enqueue_style( 'oe-widgets-style', plugins_url( '/assets/css/widgets/widgets.css', __FILE__ ) );
+		wp_enqueue_style( 'oe-widgets-style', plugins_url( '/assets/css/widgets.css', __FILE__ ) );
 
 		// If rtl
 		if ( is_RTL() ) {
-			wp_enqueue_style( 'oe-widgets-style-rtl', plugins_url( '/assets/css/widgets/rtl.css', __FILE__ ) );
+			wp_enqueue_style( 'oe-widgets-style-rtl', plugins_url( '/assets/css/rtl.css', __FILE__ ) );
 		}
 
 	}

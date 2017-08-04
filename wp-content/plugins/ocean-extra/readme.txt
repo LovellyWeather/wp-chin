@@ -3,7 +3,7 @@ Contributors: oceanwp
 Tags: widgets, meta box, metaboxes, metabox, oceanwp
 Requires at least: 4.5
 Tested up to: 4.8
-Stable tag: 1.2.9
+Stable tag: 1.2.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,12 @@ This plugin will only work with the [OceanWP](https://oceanwp.org/) theme.
 3. Custom CSS.
 
 == Changelog ==
+
+= 1.2.10 =
+- Added: New "My Library" tab in Theme Panel, this post type will be used for your custom header, custom footer, custom error page, etc... The old way (pages select) still work but it is better to import your content directly into this new post type.
+- Added: French translation, thanks a lot to Jean of freepixel.net.
+- Tweak: Your posts can be displayed on the Recent Posts widget even if there is no thumbnails.
+- Tweak: Improvement for the Scripts & Styles feature. If you see that your site's CSS is malfunctioning, go to your WordPress dashboard, click Theme Panel > Scripts & Styles, and click Save Changes. This will create a new JS and CSS files if you have disabled an JS or CSS field.
 
 = 1.2.9 =
 - Added: Portfolio extension in the Extensions tab.

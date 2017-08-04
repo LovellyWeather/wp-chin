@@ -250,7 +250,10 @@ class Ocean_Extra_Theme_Panel {
 		$theme_panels = self::get_panels();
 
 		// Get options array
-		$options = self::get_options(); ?>
+		$options = self::get_options();
+
+		// YouTube img url
+		$youtube = OE_URL . '/includes/panel/assets/img/youtube.png'; ?>
 
 		<div class="wrap oceanwp-theme-panel clr">
 
@@ -394,14 +397,27 @@ class Ocean_Extra_Theme_Panel {
 
 				<div class="oceanwp-sidebar right clr">
 
-					<div class="oceanwp-review">
-						<h3><?php esc_html_e( 'Do you like OceanWP?', 'ocean-extra' ); ?></h3>
+					<div class="oceanwp-bloc oceanwp-review">
+						<h3><?php esc_html_e( 'Are you a helpful person?', 'ocean-extra' ); ?></h3>
 						<div class="content-wrap">
-							<p class="content"><?php esc_html_e( 'Could you please do me a BIG favor and give it, and his associated plugins that you use, a 5-star rating on WordPress? Just to help us spread the word and boost our motivation.', 'ocean-extra' ); ?></p>
-							<a href="https://wordpress.org/support/theme/oceanwp/reviews/#new-post" class="button blue-button" target="_blank"><?php esc_html_e( 'Leave my review', 'ocean-extra' ); ?></a>
+							<p class="content"><?php esc_html_e( 'Could you please do me a BIG favor and give to OceanWP and his associated plugins that you use, a 5-star rating on WordPress? Just to help us spread the word and boost our motivation.', 'ocean-extra' ); ?></p>
+							<a href="https://wordpress.org/support/theme/oceanwp/reviews/#new-post" class="button owp-button" target="_blank"><?php esc_html_e( 'Leave my review', 'ocean-extra' ); ?></a>
 							<p class="bottom-text"><?php esc_html_e( 'Thank you very much!', 'ocean-extra' ); ?></p>
 						</div>
 						<i class="dashicons dashicons-wordpress"></i>
+					</div>
+
+					<div class="oceanwp-bloc oceanwp-youtube">
+						<p class="yt-img">
+							<a href="https://www.youtube.com/channel/UC9oXVn5OlPjr2-BllEVLgkg" target="_blank">
+								<img src="<?php echo esc_url( $youtube ); ?>" alt="OceanWP YouTube Channel" />
+							</a>
+						</p>
+						<div class="content-wrap">
+							<p class="content"><?php esc_html_e( 'Video tutorials have been created on our YouTube channel to help you master OceanWP and its many features.', 'ocean-extra' ); ?></p>
+							<a href="https://www.youtube.com/channel/UC9oXVn5OlPjr2-BllEVLgkg" class="button owp-button" target="_blank"><?php esc_html_e( 'Check & Subscribe', 'ocean-extra' ); ?></a>
+						</div>
+						<i class="dashicons dashicons-video-alt3"></i>
 					</div>
 
 					<div class="metabox-holder postbox oceanwp-doc popular-articles clr">
@@ -424,7 +440,7 @@ class Ocean_Extra_Theme_Panel {
 
 					<div class="oceanwp-support clr">
 						<p><?php esc_html_e( 'Need help? If you have checked the documentation and still having an issue, open a support ticket by clicking the button below.', 'ocean-extra' ); ?></p>
-						<a href="https://oceanwp.org/support/" class="button blue-button" target="_blank"><?php esc_html_e( 'Submit Support Request', 'ocean-extra' ); ?></a>
+						<a href="https://oceanwp.org/support/" class="button owp-button" target="_blank"><?php esc_html_e( 'Submit Support Request', 'ocean-extra' ); ?></a>
 					</div>
 
 				</div>

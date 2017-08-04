@@ -6,6 +6,15 @@
  * https://github.com/select2/select2/blob/master/LICENSE.md
  */
 (function (factory) {
+
+  // customized for OceanWP
+  // http://stackoverflow.com/a/36815607/400568
+  var existingVersion = jQuery.fn.select2 || null;
+  if (existingVersion) {
+    delete jQuery.fn.select2;
+  }
+  // end customization
+  
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
     define(['jquery'], factory);
@@ -31,6 +40,16 @@
     // Browser globals
     factory(jQuery);
   }
+
+  // customized for OceanWP
+  // http://stackoverflow.com/a/36815607/400568
+  jQuery.fn.owpSelect2 = jQuery.fn.select2;
+  if (existingVersion) {
+    delete jQuery.fn.select2;
+    jQuery.fn.select2 = existingVersion;
+  }
+  // end customization
+
 } (function (jQuery) {
   // This is needed so we can catch the AMD loader configuration and use it
   // The inner file should be wrapped (by `banner.start.js`) in a function that

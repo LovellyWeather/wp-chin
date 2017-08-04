@@ -72,7 +72,6 @@ if ( ! class_exists( 'Ocean_Extra_Recent_Posts_Thumbnails_Widget' ) ) {
 					$query_args = array(
 						'post_type'      => $post_type,
 						'posts_per_page' => $number,
-						'meta_key'       => '_thumbnail_id',
 						'no_found_rows'  => true,
 					);
 

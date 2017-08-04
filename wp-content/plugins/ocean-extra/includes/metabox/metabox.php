@@ -84,6 +84,63 @@ if ( ! class_exists( 'OceanWP_Post_Metabox' ) ) {
 			// Load scripts and styles.
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
+			// Body classes
+			add_filter( 'body_class', array( $this, 'body_class' ) );
+
+			// Sidebar
+			add_filter( 'ocean_get_sidebar', array( $this, 'get_sidebar' ) );
+
+			// Display top bar
+			add_filter( 'ocean_display_top_bar', array( $this, 'display_top_bar' ) );
+
+			// Display header
+			add_filter( 'ocean_display_header', array( $this, 'display_header' ) );
+
+			// Custom menu
+			add_filter( 'ocean_custom_menu', array( $this, 'custom_menu' ) );
+
+			// Display page header
+			add_filter( 'ocean_display_page_header', array( $this, 'display_page_header' ) );
+
+			// Page header style
+			add_filter( 'ocean_page_header_style', array( $this, 'page_header_style' ) );
+
+			// Page header title
+			add_filter( 'ocean_title', array( $this, 'page_header_title' ) );
+
+			// Page header subheading
+			add_filter( 'ocean_post_subheading', array( $this, 'page_header_subheading' ) );
+
+			// Display breadcrumbs
+			add_filter( 'ocean_display_breadcrumbs', array( $this, 'display_breadcrumbs' ) );
+
+			// Page header background image
+			add_filter( 'ocean_page_header_background_image', array( $this, 'page_header_bg_image' ) );
+
+			// Page header background color
+			add_filter( 'ocean_post_title_background_color', array( $this, 'page_header_bg_color' ) );
+
+			// Page header background image position
+			add_filter( 'ocean_post_title_bg_image_position', array( $this, 'page_header_bg_image_position' ) );
+			add_filter( 'ocean_post_title_bg_image_attachment', array( $this, 'page_header_bg_image_attachment' ) );
+			add_filter( 'ocean_post_title_bg_image_repeat', array( $this, 'page_header_bg_image_repeat' ) );
+			add_filter( 'ocean_post_title_bg_image_size', array( $this, 'page_header_bg_image_size' ) );
+
+			// Page header height
+			add_filter( 'ocean_post_title_height', array( $this, 'page_header_height' ) );
+
+			// Page header background opacity
+			add_filter( 'ocean_post_title_bg_overlay', array( $this, 'page_header_bg_opacity' ) );
+
+			// Page header background overlay color
+			add_filter( 'ocean_post_title_bg_overlay_color', array( $this, 'page_header_bg_overlay_color' ) );
+
+			// Display footer widgets
+			add_filter( 'ocean_display_footer_widgets', array( $this, 'display_footer_widgets' ) );
+
+			// Display footer bottom
+			add_filter( 'ocean_display_footer_bottom', array( $this, 'display_footer_bottom' ) );
+
 		}
 
 		/**
@@ -100,8 +157,8 @@ if ( ! class_exists( 'OceanWP_Post_Metabox' ) ) {
 			// Default script.
 			wp_register_script( 'oceanwp-butterbean', plugins_url( '/controls/assets/js/butterbean'. $min .'.js', __FILE__ ), array( 'butterbean' ), '', true );
 
-			// Enqueue the select2 script
-			wp_register_script( 'select2', plugins_url( '/controls/assets/js/select2.full.min.js', __FILE__ ), array( 'jquery' ), false, true );
+			// Enqueue the select2 script, I use "oceanwp-select2" to avoid plugins conflicts
+			wp_register_script( 'oceanwp-select2', plugins_url( '/controls/assets/js/select2.full.min.js', __FILE__ ), array( 'jquery' ), false, true );
 
 			// Enqueue the select2 style
 			wp_register_style( 'select2', plugins_url( '/controls/assets/css/select2.min.css', __FILE__ ) );
@@ -140,8 +197,9 @@ if ( ! class_exists( 'OceanWP_Post_Metabox' ) ) {
 			wp_enqueue_script( 'oceanwp-metabox-script', plugins_url( '/assets/js/metabox.min.js', __FILE__ ), array( 'jquery' ), OE_VERSION, true );
 			wp_enqueue_style( 'oceanwp-butterbean' );
 			wp_enqueue_script( 'oceanwp-butterbean' );
-			wp_enqueue_script( 'select2' );
+			wp_enqueue_script( 'oceanwp-select2' );
 			wp_enqueue_style( 'select2' );
+			wp_enqueue_script( 'wp-color-picker-alpha' );
 
 		}
 
@@ -588,7 +646,7 @@ if ( ! class_exists( 'OceanWP_Post_Metabox' ) ) {
 			$manager->register_setting(
 		        'ocean_post_title', // Same as control name.
 		        array(
-		            'sanitize_callback' => 'sanitize_text_field',
+		            'sanitize_callback' => 'wp_kses_post',
 		        )
 		    );
 		
@@ -605,7 +663,7 @@ if ( ! class_exists( 'OceanWP_Post_Metabox' ) ) {
 			$manager->register_setting(
 		        'ocean_post_subheading', // Same as control name.
 		        array(
-		            'sanitize_callback' => 'sanitize_text_field',
+		            'sanitize_callback' => 'wp_kses_post',
 		        )
 		    );
 			
@@ -1182,6 +1240,374 @@ if ( ! class_exists( 'OceanWP_Post_Metabox' ) ) {
 				}
 				return $widgets_areas;
 			}
+
+		}
+
+		/**
+		 * Body classes
+		 *
+		 * @since  1.2.10
+		 */
+		public function body_class( $classes ) {
+			
+			// Disabled margins
+			if ( 'on' == get_post_meta( oceanwp_post_id(), 'ocean_disable_margins', true )
+				&& ! is_search() ) {
+				$classes[] = 'no-margins';
+			}
+
+			return $classes;
+
+		}
+
+		/**
+		 * Returns the correct sidebar ID
+		 *
+		 * @since  1.2.10
+		 */
+		public function get_sidebar( $sidebar ) {
+			
+			if ( $meta = get_post_meta( oceanwp_post_id(), 'ocean_sidebar', true ) ) {
+				$sidebar = $meta;
+			}
+
+			return $sidebar;
+
+		}
+
+		/**
+		 * Display top bar
+		 *
+		 * @since  1.2.10
+		 */
+		public function display_top_bar( $return ) {
+			
+			// Check meta
+			$meta = oceanwp_post_id() ? get_post_meta( oceanwp_post_id(), 'ocean_display_top_bar', true ) : '';
+
+			// Check if disabled
+			if ( 'on' == $meta ) {
+				$return = true;
+			} elseif ( 'off' == $meta ) {
+				$return = false;
+			}
+
+			return $return;
+
+		}
+
+		/**
+		 * Display header
+		 *
+		 * @since  1.2.10
+		 */
+		public function display_header( $return ) {
+			
+			// Check meta
+			$meta = oceanwp_post_id() ? get_post_meta( oceanwp_post_id(), 'ocean_display_header', true ) : '';
+
+			// Check if disabled
+			if ( 'on' == $meta ) {
+				$return = true;
+			} elseif ( 'off' == $meta ) {
+				$return = false;
+			}
+
+			return $return;
+
+		}
+
+		/**
+		 * Custom menu
+		 *
+		 * @since  1.2.10
+		 */
+		public function custom_menu( $menu ) {
+			
+			$menu = get_post_meta( oceanwp_post_id(), 'ocean_header_custom_menu', true );
+			$menu = 'default' != $menu ? $menu : '';
+
+			return $menu;
+
+		}
+
+		/**
+		 * Display page header
+		 *
+		 * @since  1.2.10
+		 */
+		public function display_page_header( $return ) {
+			
+			// Check meta
+			$meta = oceanwp_post_id() ? get_post_meta( oceanwp_post_id(), 'ocean_disable_title', true ) : '';
+
+			// Check if disabled
+			if ( 'on' == $meta ) {
+				$return = false;
+			}
+
+			return $return;
+
+		}
+
+		/**
+		 * Page header style
+		 *
+		 * @since  1.2.10
+		 */
+		public function page_header_style( $style ) {
+			
+			if ( $meta = get_post_meta( oceanwp_post_id(), 'ocean_post_title_style', true ) ) {
+				$style = $meta;
+			}
+
+			return $style;
+
+		}
+
+		/**
+		 * Page header title
+		 *
+		 * @since  1.2.10
+		 */
+		public function page_header_title( $title ) {
+			
+			if ( $meta = get_post_meta( oceanwp_post_id(), 'ocean_post_title', true ) ) {
+				$title = $meta;
+			}
+
+			return $title;
+
+		}
+
+		/**
+		 * Page header subheading
+		 *
+		 * @since  1.2.10
+		 */
+		public function page_header_subheading( $subheading ) {
+			
+			if ( $meta = get_post_meta( oceanwp_post_id(), 'ocean_post_subheading', true ) ) {
+				$subheading = $meta;
+			}
+
+			return $subheading;
+
+		}
+
+		/**
+		 * Display breadcrumbs
+		 *
+		 * @since  1.2.10
+		 */
+		public function display_breadcrumbs( $return ) {
+			
+			// Check meta
+			$meta = oceanwp_post_id() ? get_post_meta( oceanwp_post_id(), 'ocean_disable_breadcrumbs', true ) : '';
+
+			// Check if disabled
+			if ( 'on' == $meta ) {
+				$return = true;
+			} elseif ( 'off' == $meta ) {
+				$return = false;
+			}
+
+			return $return;
+
+		}
+
+		/**
+		 * Title background color
+		 *
+		 * @since  1.2.10
+		 */
+		public function page_header_bg_color( $bg_color ) {
+
+			if ( 'solid-color' == get_post_meta( oceanwp_post_id(), 'ocean_post_title_style', true ) ) {
+				if ( $meta = get_post_meta( oceanwp_post_id(), 'ocean_post_title_background_color', true ) ) {
+					$bg_color = $meta;
+				}
+			}
+
+			return $bg_color;
+
+		}
+
+		/**
+		 * Title background image
+		 *
+		 * @since  1.2.10
+		 */
+		public function page_header_bg_image( $bg_img ) {
+
+			if ( 'background-image' == get_post_meta( oceanwp_post_id(), 'ocean_post_title_style', true ) ) {
+				if ( $meta = get_post_meta( oceanwp_post_id(), 'ocean_post_title_background', true ) ) {
+					$bg_img = $meta;
+				}
+			}
+
+			return $bg_img;
+
+		}
+
+		/**
+		 * Title background image position
+		 *
+		 * @since  1.2.10
+		 */
+		public function page_header_bg_image_position( $bg_img_position ) {
+
+			if ( 'background-image' == get_post_meta( oceanwp_post_id(), 'ocean_post_title_style', true ) ) {
+				if ( $meta = get_post_meta( oceanwp_post_id(), 'ocean_post_title_bg_image_position', true ) ) {
+					$bg_img_position = $meta;
+				}
+			}
+
+			return $bg_img_position;
+
+		}
+
+		/**
+		 * Title background image attachment
+		 *
+		 * @since  1.2.10
+		 */
+		public function page_header_bg_image_attachment( $bg_img_attachment ) {
+
+			if ( 'background-image' == get_post_meta( oceanwp_post_id(), 'ocean_post_title_style', true ) ) {
+				if ( $meta = get_post_meta( oceanwp_post_id(), 'ocean_post_title_bg_image_attachment', true ) ) {
+					$bg_img_attachment = $meta;
+				}
+			}
+
+			return $bg_img_attachment;
+
+		}
+
+		/**
+		 * Title background image repeat
+		 *
+		 * @since  1.2.10
+		 */
+		public function page_header_bg_image_repeat( $bg_img_repeat ) {
+
+			if ( 'background-image' == get_post_meta( oceanwp_post_id(), 'ocean_post_title_style', true ) ) {
+				if ( $meta = get_post_meta( oceanwp_post_id(), 'ocean_post_title_bg_image_repeat', true ) ) {
+					$bg_img_repeat = $meta;
+				}
+			}
+
+			return $bg_img_repeat;
+
+		}
+
+		/**
+		 * Title background image size
+		 *
+		 * @since  1.2.10
+		 */
+		public function page_header_bg_image_size( $bg_img_size ) {
+
+			if ( 'background-image' == get_post_meta( oceanwp_post_id(), 'ocean_post_title_style', true ) ) {
+				if ( $meta = get_post_meta( oceanwp_post_id(), 'ocean_post_title_bg_image_size', true ) ) {
+					$bg_img_size = $meta;
+				}
+			}
+
+			return $bg_img_size;
+
+		}
+
+		/**
+		 * Title height
+		 *
+		 * @since  1.2.10
+		 */
+		public function page_header_height( $title_height ) {
+
+			if ( 'background-image' == get_post_meta( oceanwp_post_id(), 'ocean_post_title_style', true ) ) {
+				if ( $meta = get_post_meta( oceanwp_post_id(), 'ocean_post_title_height', true ) ) {
+					$title_height = $meta;
+				}
+			}
+
+			return $title_height;
+
+		}
+
+		/**
+		 * Title background opacity
+		 *
+		 * @since  1.2.10
+		 */
+		public function page_header_bg_opacity( $opacity ) {
+
+			if ( 'background-image' == get_post_meta( oceanwp_post_id(), 'ocean_post_title_style', true ) ) {
+				if ( $meta = get_post_meta( oceanwp_post_id(), 'ocean_post_title_bg_overlay', true ) ) {
+					$opacity = $meta;
+				}
+			}
+
+			return $opacity;
+
+		}
+
+		/**
+		 * Title background overlay color
+		 *
+		 * @since  1.2.10
+		 */
+		public function page_header_bg_overlay_color( $overlay_color ) {
+
+			if ( 'background-image' == get_post_meta( oceanwp_post_id(), 'ocean_post_title_style', true ) ) {
+				if ( $meta = get_post_meta( oceanwp_post_id(), 'ocean_post_title_bg_overlay_color', true ) ) {
+					$overlay_color = $meta;
+				}
+			}
+
+			return $overlay_color;
+
+		}
+
+		/**
+		 * Display footer widgets
+		 *
+		 * @since  1.2.10
+		 */
+		public function display_footer_widgets( $return ) {
+			
+			// Check meta
+			$meta = oceanwp_post_id() ? get_post_meta( oceanwp_post_id(), 'ocean_display_footer_widgets', true ) : '';
+
+			// Check if disabled
+			if ( 'on' == $meta ) {
+				$return = true;
+			} elseif ( 'off' == $meta ) {
+				$return = false;
+			}
+
+			return $return;
+
+		}
+
+		/**
+		 * Display footer bottom
+		 *
+		 * @since  1.2.10
+		 */
+		public function display_footer_bottom( $return ) {
+			
+			// Check meta
+			$meta = oceanwp_post_id() ? get_post_meta( oceanwp_post_id(), 'ocean_display_footer_bottom', true ) : '';
+
+			// Check if disabled
+			if ( 'on' == $meta ) {
+				$return = true;
+			} elseif ( 'off' == $meta ) {
+				$return = false;
+			}
+
+			return $return;
 
 		}
 
